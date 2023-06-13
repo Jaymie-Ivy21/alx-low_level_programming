@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdio.h>
 #include <stdlib.h>
 /**
 * wordCounterRec - count num of words recursively
@@ -33,14 +34,14 @@ int word_counter(char *str)
 char **strtow(char *str)
 {
 	char **strDup;
-	int i, n, m, words;
+	int i, n = 0, m = 0, words;
 
 	if (str == NULL || str[0] == 0)
 		return (NULL);
 	words = word_counter(str);
 	if (words < 1)
 		return (NULL);
-	strDup = malloc(sizeof(char *) * (words + 1));
+	strDup = (char **) malloc(sizeof(char *) * (words + 1));
 	if (strDup == NULL)
 		return (NULL);
 	i = 0;
@@ -51,7 +52,7 @@ char **strtow(char *str)
 			n = 0;
 			while (str[n] != ' ')
 				n++;
-			strDup[i] = malloc(sizeof(char) * (n + 1));
+			strDup[i] = (char *) malloc(sizeof(char) * (n + 1));
 			if (strDup[i] == NULL)
 			{
 				while (--i >= 0)
