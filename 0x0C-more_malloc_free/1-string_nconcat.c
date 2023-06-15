@@ -1,17 +1,21 @@
 #include "main.h"
+#include <stdio.h>
+#include <stdlib.h>
 
 /**
-*string_nconcten - conctenenates two strings
-*@s1: first string input
-*@s2: second string input
-*@n: maximum number of bytes of s2 to conctenenate to s1
+*string_nconcat - Concatenates two strings using at
+*most an inputted number of bytes.
+*@s1: The first string.
+*@s2: The second string.
+*@n: The maximum number of bytes of s2 to concatenate to s1.
 *
-*Return: pointer to the conctenenated space in memory
+*Return: If the function fails - NULL.
+*Otherwise - a pointer to the concatenated space in memory.
 */
 
-char *string_nconcten(char *s1, char *s2, unsigned int n)
+char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	char *concten;
+	char *concat;
 	unsigned int len = n, index;
 
 	if (s1 == NULL)
@@ -23,20 +27,20 @@ char *string_nconcten(char *s1, char *s2, unsigned int n)
 	for (index = 0; s1[index]; index++)
 		len++;
 
-	concten = malloc(sizeof(char) * (len + 1));
+	concat = malloc(sizeof(char) * (len + 1));
 
-	if (concten == NULL)
+	if (concat == NULL)
 		return (NULL);
 
 	len = 0;
 
 	for (index = 0; s1[index]; index++)
-		concten[len++] = s1[index];
+		concat[len++] = s1[index];
 
 	for (index = 0; s2[index] && index < n; index++)
-		concten[len++] = s2[index];
+		concat[len++] = s2[index];
 
-	concten[len] = '\0';
+	concat[len] = '\0';
 
-	return (concten);
+	return (concat);
 }
